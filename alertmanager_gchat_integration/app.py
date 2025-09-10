@@ -65,6 +65,7 @@ def post_alerts():
 
     # Build a HTTP client request
     for alert in request.json['alerts']:
+        LOGGER.debug(f"Rendering alert: {alert}")
         # Render alert as text.
         render_payload = {
             'origin': origin
