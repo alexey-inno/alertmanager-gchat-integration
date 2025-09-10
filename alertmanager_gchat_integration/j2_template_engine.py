@@ -59,7 +59,7 @@ def load_j2_template_engine(template_file_path: str):
     # Register custom filters
     j2_environment.filters['add_seconds'] = datetime_adjust
     j2_environment.filters['to_unix_millis'] = datetime_to_unix_millis
-    j2_environment.filters['dt_from_grafana_ts'] = datetime_to_unix_millis
+    j2_environment.filters['dt_from_grafana_ts'] = iso8601_to_dt
 
     # Return template.
     return j2_environment.get_template(template_file.name)
