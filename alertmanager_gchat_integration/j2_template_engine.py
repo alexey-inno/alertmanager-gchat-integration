@@ -1,10 +1,14 @@
 from pathlib import Path
 from datetime import datetime, timedelta
 
+import iso8601
 from jinja2 import Environment, FileSystemLoader
 
 
 # Custom Jinja2 filters
+def iso8601_to_dt(dt_string):
+    return iso8601.parse_date(dt_string)
+
 def datetime_adjust(dt, seconds=0):
     """
     Adjust datetime by adding or subtracting seconds.
@@ -55,6 +59,7 @@ def load_j2_template_engine(template_file_path: str):
     # Register custom filters
     j2_environment.filters['add_seconds'] = datetime_adjust
     j2_environment.filters['to_unix_millis'] = datetime_to_unix_millis
+    j2_environment.filters['dt_from_grafana_ts'] = datetime_to_unix_millis
 
     # Return template.
     return j2_environment.get_template(template_file.name)
