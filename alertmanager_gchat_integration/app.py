@@ -81,7 +81,7 @@ def post_alerts():
         if CONFIG['app']['notification'].get('use_cards'):
             post_request_data = {'cards': json.loads(rendered_alert)}
         else:
-            post_request_data = {'text': rendered_alert}
+            post_request_data = {'text': rendered_alert.strip()}
         post_request_details = requests.post(
             notification_url,
             json=post_request_data,
