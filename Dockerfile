@@ -8,10 +8,12 @@ RUN mkdir /app
 
 WORKDIR /app
 
-ADD scripts/entrypoint.sh /app
+# Copy the application source code and setup files
+COPY setup.py setup.cfg MANIFEST.in README.md ./
+COPY alertmanager_gchat_integration/ ./alertmanager_gchat_integration/
+COPY scripts/entrypoint.sh ./
 
-ARG PACKAGE_VERSION
-
-RUN pip --no-cache-dir install alertmanager-gchat-integration==$PACKAGE_VERSION
+# Install the application from the local source
+RUN pip --no-cache-dir install .
 
 CMD ["./entrypoint.sh"]

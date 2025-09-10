@@ -31,7 +31,10 @@ setup(
         "gunicorn==20.0.4",
         "toml",
         "requests",
-        "jinja2",
+        "Jinja2==2.11.3",
         "iso8601==0.1.14",
+        "MarkupSafe==1.1.1",
+        "itsdangerous==1.1.0",
+        "Werkzeug==1.0.1",
     ],
 )
